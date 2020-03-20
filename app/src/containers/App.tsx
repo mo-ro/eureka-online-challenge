@@ -1,13 +1,19 @@
-import React, { Component } from 'react';
+/**@jsx jsx */
+import * as React from "react";
+import { jsx } from "@emotion/core";
+import { ThemeProvider } from "emotion-theming";
+import { theme } from "../settings/theme";
+import { Card } from "../components/Card";
 
-class App extends Component {
-  render() {
-    return (
-      <>
-        <h1>Hello TS-React!</h1>
-      </>
-    )
-  }
-}
-
-export default App;
+export const App: React.FC<{}> = () => (
+  <ThemeProvider theme={theme}>
+    <Card
+      status="active"
+      name="aaa"
+      age={32}
+      matchRate={90}
+      tags={["tag"]}
+      profImage="https"
+    />
+  </ThemeProvider>
+);

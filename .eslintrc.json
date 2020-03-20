@@ -36,9 +36,6 @@
       "error",
       "unix"
     ],
-    "quotes": [
-      "error",
-      "single"
-    ]
+    "@typescript-eslint/explicit-function-return-type": 0
   }
 }
