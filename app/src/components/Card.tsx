@@ -1,8 +1,8 @@
-import * as React from "react";
-import {css} from "@emotion/core";
+import * as React from 'react';
+import { css } from '@emotion/core';
 
 interface CardProps {
-  status: "active" | "inactive";
+  status: 'active' | 'inactive';
   name: string;
   age: number;
   matchRate: number;
@@ -10,7 +10,4 @@ interface CardProps {
   profImage: string;
 }
 
-export const Card: React.FC<CardProps> = () => (
-  <div className="card"></div>
-);
-
+export const Card: React.FC<CardProps> = () => <div className="card"></div>;

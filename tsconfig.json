@@ -17,5 +17,5 @@
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node"
-  }
+  },
 }
