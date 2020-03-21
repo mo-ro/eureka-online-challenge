@@ -1,19 +1,20 @@
 /**@jsx jsx */
-import * as React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { jsx } from "@emotion/core";
 import { ThemeProvider } from "emotion-theming";
 import { theme } from "../settings/theme";
-import { Card } from "../components/Card";
+import { RecommendedCards } from "../components/RecommendedCards";
+const peopleJSON = require("../data/people.json");
 
-export const App: React.FC<{}> = () => (
-  <ThemeProvider theme={theme}>
-    <Card
-      status="active"
-      name="aaa"
-      age={32}
-      matchRate={90}
-      tags={["tag"]}
-      profImage="https"
-    />
-  </ThemeProvider>
-);
+export const App: React.FC<{}> = () => {
+  const [people, setPeople] = useState([]);
+  useEffect(() => {
+    setPeople(peopleJSON.data);
+  }, []);
+  return (
+    <ThemeProvider theme={theme}>
+      <RecommendedCards people={people} />
+    </ThemeProvider>
+  );
+};
