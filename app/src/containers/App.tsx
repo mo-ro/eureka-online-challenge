@@ -18,17 +18,15 @@ export const App: React.FC<{}> = () => {
   }, []);
 
   const handleJudge = () => {
-    // setJudgeCount(prevState => prevState + 1);
-    setIsJudged(true);
+    setJudgeCount(prevState => prevState + 1);
+    // setIsJudged(true);
   };
 
   const handleLike = () => {
-    console.log("like");
     handleJudge();
   };
 
   const handleDislike = () => {
-    console.log("dislike");
     handleJudge();
   };
 

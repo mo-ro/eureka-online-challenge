@@ -65,8 +65,6 @@ export const Card: React.FC<CardProps> = ({
   isTop,
 }) => {
   const judgeAnimation = useSpring({ opacity: isTop && isJudged ? 0 : 1 });
-  console.log(isTop);
-  // console.log(isJudged);
   return (
     <animated.div css={cardStyle} style={judgeAnimation}>
       <p>{id}</p>

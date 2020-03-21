@@ -1,6 +1,8 @@
 /** @jsx jsx */
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import { jsx, css } from "@emotion/core";
+import { useTransition, animated } from "react-spring";
+
 import { Card } from "./Card";
 import { RecommendedPersonTypes } from "../types/RecommendedPersonTypes";
 
@@ -26,22 +28,35 @@ export const RecommendedCards: React.FC<RecommendedCardsProps> = ({
   handleDisLike,
 }) => {
   const displayCardLimit = 5;
+  const [displayPeople, setDisplayPeople] = useState([]);
+  const transitions = useTransition(displayPeople, person => person.id, {
+    from: { position: "absolute", maxWidth: 300, width: "100%", opacity: 1 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+  });
+
+  useEffect(() => {
+    setDisplayPeople([]);
+    people.forEach((person, index) => {
+      judgeCount + index < people.length &&
+        people.length - judgeCount - displayCardLimit <= index &&
+        setDisplayPeople(prevState => [...prevState, person]);
+    });
+  }, [people, judgeCount]);
+
   return (
     <React.Fragment>
       <div css={RecommendedCardsStyle}>
-        {people.map(
-          (person, index) =>
-            judgeCount + index < people.length &&
-            people.length - judgeCount - displayCardLimit <= index && (
-              <React.Fragment>
+        {transitions.map(
+          ({ item, props }, index) =>
+            item && (
+              <animated.div key={item.id} style={props}>
                 <Card
-                  key={person.id}
                   isJudged={isJudged}
                   isTop={people.length - judgeCount === index + 1}
-                  {...person}
+                  {...item}
                 />
-                {console.log(index)}
-              </React.Fragment>
+              </animated.div>
             ),
         )}
       </div>
