@@ -1,6 +1,7 @@
 /**@jsx jsx */
 import React, { useState, useEffect } from "react";
-import { jsx } from "@emotion/core";
+import { jsx, Global, css } from "@emotion/core";
+import emotionReset from "emotion-reset";
 import { ThemeProvider } from "emotion-theming";
 import { theme } from "../settings/theme";
 import { RecommendedCards } from "../components/RecommendedCards";
@@ -30,9 +31,16 @@ export const App: React.FC<{}> = () => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <RecommendedCards judgeCount={judgeCount} people={people} />
-      <JudgeButtons handleLike={handleLike} handleDisLike={handleDislike} />
-    </ThemeProvider>
+    <React.Fragment>
+      <Global
+        styles={css`
+          ${emotionReset}
+        `}
+      />
+      <ThemeProvider theme={theme}>
+        <RecommendedCards judgeCount={judgeCount} people={people} />
+        <JudgeButtons handleLike={handleLike} handleDisLike={handleDislike} />
+      </ThemeProvider>
+    </React.Fragment>
   );
 };

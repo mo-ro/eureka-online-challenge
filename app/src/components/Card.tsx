@@ -17,10 +17,28 @@ const cardStyle = theme =>
     backgroundSize: "cover",
     backgroundPosition: "center",
 
+    "& .status": {
+      width: 10,
+      height: 10,
+      borderRadius: "100%",
+      backgroundColor: theme.colors.lightGreen,
+    },
+
     "& .name": {
-      // color: theme.colors.white,
+      color: theme.colors.white,
       fontWeight: "bold",
       fontSize: 20,
+    },
+
+    "& .age": {
+      color: theme.colors.white,
+      fontWeight: "bold",
+      fontSize: 20,
+    },
+
+    "& .tags": {
+      display: "flex",
+      flexWrap: "wrap",
     },
   });
 
@@ -34,12 +52,16 @@ export const Card: React.FC<CardProps> = ({
   avatar,
 }) => (
   <div css={cardStyle} style={{ backgroundImage: `url("${avatar + id}.jpg")` }}>
-    <p>{status}</p>
+    <p className="status">{status}</p>
     <p className="name">{fullName}</p>
-    <p>{age}</p>
-    <p>{matchingRate}</p>
-    {tags.map(tag => (
-      <p key={`${id + tag}`}>{tag}</p>
-    ))}
+    <p className="age">{age}</p>
+    <p className="rate">{matchingRate}</p>
+    <ul className="tags">
+      {tags.map(tag => (
+        <li key={`${id + tag}`} className="tag">
+          <p>{tag}</p>
+        </li>
+      ))}
+    </ul>
   </div>
 );
