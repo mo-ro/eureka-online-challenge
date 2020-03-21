@@ -14,7 +14,7 @@ const cardStyle = theme =>
     maxWidth: 300,
     position: "absolute",
     width: "100%",
-    boxShadow: "0px 4px 10px rgba(0, 0, 0, .2)",
+    boxShadow: "0px 4px 10px rgba(0, 0, 0, .14)",
     backgroundSize: "cover",
     backgroundPosition: "center",
 
@@ -55,10 +55,14 @@ export const Card: React.FC<CardProps> = ({
   fullName,
   age,
   matchingRate,
+  avatar,
   tags,
 }) => {
   return (
-    <div css={cardStyle}>
+    <div
+      css={cardStyle}
+      style={{ backgroundImage: `url("${avatar + id}.jpg")` }}
+    >
       <p>{id}</p>
       <p className="status">{status}</p>
       <p className="name">{fullName}</p>

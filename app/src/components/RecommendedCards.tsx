@@ -25,8 +25,8 @@ export const RecommendedCards: React.FC<RecommendedCardsProps> = ({
   const [displayPeople, setDisplayPeople] = useState([]);
   const transitions = useTransition(displayPeople, person => person.id, {
     from: { position: "absolute", maxWidth: 300, width: "100%", opacity: 1 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0 },
+    enter: { opacity: 1, transform: "translateX(0%) rotate(0deg)" },
+    leave: { opacity: 0, transform: "translateX(100%) rotate(30deg)" },
   });
 
   useEffect(() => {

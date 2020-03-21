@@ -18,7 +18,6 @@ export const App: React.FC<{}> = () => {
 
   const handleJudge = () => {
     setJudgeCount(prevState => prevState + 1);
-    // setIsJudged(true);
   };
 
   const handleLike = () => {
