@@ -1,8 +1,9 @@
 export interface RecommendedPersonTypes {
+  id: number;
   status: "active" | "inactive";
-  name: string;
+  fullName: string;
   age: number;
-  matchRate: number;
+  matchingRate: number;
   tags: string[];
-  profImage: string;
+  avatar: string;
 }

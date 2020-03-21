@@ -22,9 +22,23 @@ const cardStyle = theme =>
     },
   });
 
-export const Card: React.FC<CardProps> = ({ name, age }) => (
+export const Card: React.FC<CardProps> = ({
+  id,
+  status,
+  fullName,
+  age,
+  matchingRate,
+  tags,
+  avatar,
+}) => (
   <div css={cardStyle}>
-    <p className="name">{name}</p>
+    <p>{status}</p>
+    <p className="name">{fullName}</p>
     <p>{age}</p>
+    <p>{matchingRate}</p>
+    {tags.map(tag => (
+      <p key={`${id + tag}`}>{tag}</p>
+    ))}
+    <img src={`${avatar + id}.jpg`} alt="" />
   </div>
 );

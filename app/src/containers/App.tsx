@@ -1,6 +1,5 @@
 /**@jsx jsx */
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { jsx } from "@emotion/core";
 import { ThemeProvider } from "emotion-theming";
 import { theme } from "../settings/theme";

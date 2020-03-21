@@ -11,7 +11,7 @@ export const RecommendedCards: React.FC<RecommendedCardsProps> = ({
 }) => (
   <div>
     {people.map(person => (
-      <Card key={person.name} {...person} />
+      <Card key={person.id} {...person} />
     ))}
   </div>
 );
