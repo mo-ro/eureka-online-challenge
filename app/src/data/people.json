@@ -890,15 +890,6 @@
       "avatar": "https://randomuser.me/api/portraits/women/",
       "tags": ["筋トレ"],
       "status": "active"
-    },
-    {
-      "id": 100,
-      "fullName": "Dudley Godilington",
-      "age": 27,
-      "matchingRate": 88,
-      "avatar": "https://randomuser.me/api/portraits/women/",
-      "tags": ["トライアスロン"],
-      "status": "active"
     }
   ]
 }

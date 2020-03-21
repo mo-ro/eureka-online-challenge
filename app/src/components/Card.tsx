@@ -14,6 +14,8 @@ const cardStyle = theme =>
     position: "absolute",
     width: "100%",
     boxShadow: "0px 4px 10px rgba(0, 0, 0, .2)",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
 
     "& .name": {
       // color: theme.colors.white,
@@ -31,7 +33,7 @@ export const Card: React.FC<CardProps> = ({
   tags,
   avatar,
 }) => (
-  <div css={cardStyle}>
+  <div css={cardStyle} style={{ backgroundImage: `url("${avatar + id}.jpg")` }}>
     <p>{status}</p>
     <p className="name">{fullName}</p>
     <p>{age}</p>
@@ -39,6 +41,5 @@ export const Card: React.FC<CardProps> = ({
     {tags.map(tag => (
       <p key={`${id + tag}`}>{tag}</p>
     ))}
-    <img src={`${avatar + id}.jpg`} alt="" />
   </div>
 );
