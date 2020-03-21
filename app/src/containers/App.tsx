@@ -6,27 +6,13 @@ import { ThemeProvider } from "emotion-theming";
 
 import { theme } from "../settings/theme";
 import { RecommendedCards } from "../components/RecommendedCards";
-import { JudgeButtons } from "../components/JudgeButtons";
 const peopleJSON = require("../data/people.json");
 
 export const App: React.FC<{}> = () => {
   const [people, setPeople] = useState([]);
-  const [judgeCount, setJudgeCount] = useState(0);
   useEffect(() => {
     setPeople(peopleJSON.data);
   }, []);
-
-  const handleJudge = () => {
-    setJudgeCount(prevState => prevState + 1);
-  };
-
-  const handleLike = () => {
-    handleJudge();
-  };
-
-  const handleDislike = () => {
-    handleJudge();
-  };
 
   return (
     <React.Fragment>
@@ -36,8 +22,7 @@ export const App: React.FC<{}> = () => {
         `}
       />
       <ThemeProvider theme={theme}>
-        <RecommendedCards judgeCount={judgeCount} people={people} />
-        <JudgeButtons handleDisLike={handleDislike} handleLike={handleLike} />
+        <RecommendedCards people={people} />
       </ThemeProvider>
     </React.Fragment>
   );

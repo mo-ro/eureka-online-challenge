@@ -5,10 +5,10 @@ import { useTransition, animated } from "react-spring";
 
 import { Card } from "./Card";
 import { RecommendedPersonTypes } from "../types/RecommendedPersonTypes";
+import { JudgeButtons } from "./JudgeButtons";
 
 interface RecommendedCardsProps {
   people: RecommendedPersonTypes[];
-  judgeCount: number;
 }
 
 const RecommendedCardsStyle = css({
@@ -19,15 +19,35 @@ const RecommendedCardsStyle = css({
 
 export const RecommendedCards: React.FC<RecommendedCardsProps> = ({
   people,
-  judgeCount,
 }) => {
   const displayCardLimit = 5;
+  const [judgeCount, setJudgeCount] = useState(0);
+  const [isLiked, setIsLiked] = useState(false);
   const [displayPeople, setDisplayPeople] = useState([]);
   const transitions = useTransition(displayPeople, person => person.id, {
     from: { position: "absolute", maxWidth: 300, width: "100%", opacity: 1 },
     enter: { opacity: 1, transform: "translateX(0%) rotate(0deg)" },
-    leave: { opacity: 0, transform: "translateX(100%) rotate(30deg)" },
+    leave: {
+      opacity: 0,
+      transform: isLiked
+        ? "translateX(100%) rotate(30deg)"
+        : "translateX(-100%) rotate(-30deg)",
+    },
   });
+
+  const handleJudge = () => {
+    setJudgeCount(prevState => prevState + 1);
+  };
+
+  const handleLike = () => {
+    setIsLiked(true);
+    handleJudge();
+  };
+
+  const handleDislike = () => {
+    setIsLiked(false);
+    handleJudge();
+  };
 
   useEffect(() => {
     setDisplayPeople([]);
@@ -50,6 +70,7 @@ export const RecommendedCards: React.FC<RecommendedCardsProps> = ({
             ),
         )}
       </div>
+      <JudgeButtons handleDisLike={handleDislike} handleLike={handleLike} />
     </React.Fragment>
   );
 };
