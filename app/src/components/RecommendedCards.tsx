@@ -18,13 +18,17 @@ const RecommendedCardsStyle = css({
 export const RecommendedCards: React.FC<RecommendedCardsProps> = ({
   people,
   judgeCount,
-}) => (
-  <div css={RecommendedCardsStyle}>
-    {people.map(
-      (person, index) =>
-        judgeCount + index < people.length && (
-          <Card key={person.id} {...person} />
-        ),
-    )}
-  </div>
-);
+}) => {
+  const showCardNum = 5;
+  return (
+    <div css={RecommendedCardsStyle}>
+      {people.map(
+        (person, index) =>
+          judgeCount + index < people.length &&
+          people.length - judgeCount - showCardNum < index && (
+            <Card key={person.id} {...person} />
+          ),
+      )}
+    </div>
+  );
+};
