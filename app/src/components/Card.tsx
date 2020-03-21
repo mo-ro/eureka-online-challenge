@@ -1,9 +1,14 @@
 /** @jsx jsx */
 import React from "react";
 import { jsx, css } from "@emotion/core";
+import { animated, useSpring } from "react-spring";
+
 import { RecommendedPersonTypes } from "../types/RecommendedPersonTypes";
 
-type CardProps = RecommendedPersonTypes;
+interface CardProps extends RecommendedPersonTypes {
+  isJudged: boolean;
+  isTop: boolean;
+}
 
 const cardStyle = theme =>
   css({
@@ -18,10 +23,16 @@ const cardStyle = theme =>
     backgroundPosition: "center",
 
     "& .status": {
-      width: 10,
-      height: 10,
-      borderRadius: "100%",
-      backgroundColor: theme.colors.lightGreen,
+      position: "relative",
+      "&::before": {
+        // content: "",
+        display: "block",
+        position: "absolute",
+        width: 10,
+        height: 10,
+        borderRadius: "100%",
+        backgroundColor: theme.colors.lightGreen,
+      },
     },
 
     "& .name": {
@@ -50,18 +61,26 @@ export const Card: React.FC<CardProps> = ({
   matchingRate,
   tags,
   avatar,
-}) => (
-  <div css={cardStyle} style={{ backgroundImage: `url("${avatar + id}.jpg")` }}>
-    <p className="status">{status}</p>
-    <p className="name">{fullName}</p>
-    <p className="age">{age}</p>
-    <p className="rate">{matchingRate}</p>
-    <ul className="tags">
-      {tags.map(tag => (
-        <li key={`${id + tag}`} className="tag">
-          <p>{tag}</p>
-        </li>
-      ))}
-    </ul>
-  </div>
-);
+  isJudged,
+  isTop,
+}) => {
+  const judgeAnimation = useSpring({ opacity: isTop && isJudged ? 0 : 1 });
+  console.log(isTop);
+  // console.log(isJudged);
+  return (
+    <animated.div css={cardStyle} style={judgeAnimation}>
+      <p>{id}</p>
+      <p className="status">{status}</p>
+      <p className="name">{fullName}</p>
+      <p className="age">{age}</p>
+      <p className="rate">{matchingRate}</p>
+      <ul className="tags">
+        {tags.map(tag => (
+          <li key={`${id + tag}`} className="tag">
+            <p>{tag}</p>
+          </li>
+        ))}
+      </ul>
+    </animated.div>
+  );
+};
