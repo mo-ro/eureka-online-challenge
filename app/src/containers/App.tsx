@@ -9,12 +9,14 @@ const peopleJSON = require("../data/people.json");
 
 export const App: React.FC<{}> = () => {
   const [people, setPeople] = useState([]);
+  const [judgeCount, setJudgeCount] = useState(0);
   useEffect(() => {
     setPeople(peopleJSON.data);
   }, []);
 
   const handleJudge = () => {
-    console.log("judged");
+    setJudgeCount(prevState => prevState + 1);
+    console.log(judgeCount);
   };
 
   const handleLike = () => {
@@ -29,7 +31,7 @@ export const App: React.FC<{}> = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <RecommendedCards people={people} />
+      <RecommendedCards judgeCount={judgeCount} people={people} />
       <JudgeButtons handleLike={handleLike} handleDisLike={handleDislike} />
     </ThemeProvider>
   );
