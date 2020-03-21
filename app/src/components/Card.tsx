@@ -1,14 +1,10 @@
 /** @jsx jsx */
 import React from "react";
 import { jsx, css } from "@emotion/core";
-import { animated, useSpring } from "react-spring";
 
 import { RecommendedPersonTypes } from "../types/RecommendedPersonTypes";
 
-interface CardProps extends RecommendedPersonTypes {
-  isJudged: boolean;
-  isTop: boolean;
-}
+type CardProps = RecommendedPersonTypes;
 
 const cardStyle = theme =>
   css({
@@ -60,13 +56,9 @@ export const Card: React.FC<CardProps> = ({
   age,
   matchingRate,
   tags,
-  avatar,
-  isJudged,
-  isTop,
 }) => {
-  const judgeAnimation = useSpring({ opacity: isTop && isJudged ? 0 : 1 });
   return (
-    <animated.div css={cardStyle} style={judgeAnimation}>
+    <div css={cardStyle}>
       <p>{id}</p>
       <p className="status">{status}</p>
       <p className="name">{fullName}</p>
@@ -79,6 +71,6 @@ export const Card: React.FC<CardProps> = ({
           </li>
         ))}
       </ul>
-    </animated.div>
+    </div>
   );
 };

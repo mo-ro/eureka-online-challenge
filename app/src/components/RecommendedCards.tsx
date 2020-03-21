@@ -9,9 +9,6 @@ import { RecommendedPersonTypes } from "../types/RecommendedPersonTypes";
 interface RecommendedCardsProps {
   people: RecommendedPersonTypes[];
   judgeCount: number;
-  isJudged: boolean;
-  handleLike: () => void;
-  handleDisLike: () => void;
 }
 
 const RecommendedCardsStyle = css({
@@ -23,9 +20,6 @@ const RecommendedCardsStyle = css({
 export const RecommendedCards: React.FC<RecommendedCardsProps> = ({
   people,
   judgeCount,
-  isJudged,
-  handleLike,
-  handleDisLike,
 }) => {
   const displayCardLimit = 5;
   const [displayPeople, setDisplayPeople] = useState([]);
@@ -48,21 +42,13 @@ export const RecommendedCards: React.FC<RecommendedCardsProps> = ({
     <React.Fragment>
       <div css={RecommendedCardsStyle}>
         {transitions.map(
-          ({ item, props }, index) =>
+          ({ item, props }) =>
             item && (
               <animated.div key={item.id} style={props}>
-                <Card
-                  isJudged={isJudged}
-                  isTop={people.length - judgeCount === index + 1}
-                  {...item}
-                />
+                <Card {...item} />
               </animated.div>
             ),
         )}
-      </div>
-      <div>
-        <div onClick={handleDisLike}>Dislike</div>
-        <div onClick={handleLike}>Like</div>
       </div>
     </React.Fragment>
   );

@@ -12,7 +12,6 @@ const peopleJSON = require("../data/people.json");
 export const App: React.FC<{}> = () => {
   const [people, setPeople] = useState([]);
   const [judgeCount, setJudgeCount] = useState(0);
-  const [isJudged, setIsJudged] = useState(false);
   useEffect(() => {
     setPeople(peopleJSON.data);
   }, []);
@@ -38,13 +37,8 @@ export const App: React.FC<{}> = () => {
         `}
       />
       <ThemeProvider theme={theme}>
-        <RecommendedCards
-          judgeCount={judgeCount}
-          people={people}
-          isJudged={isJudged}
-          handleLike={handleLike}
-          handleDisLike={handleDislike}
-        />
+        <RecommendedCards judgeCount={judgeCount} people={people} />
+        <JudgeButtons handleDisLike={handleDislike} handleLike={handleLike} />
       </ThemeProvider>
     </React.Fragment>
   );
