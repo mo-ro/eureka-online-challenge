@@ -17,4 +17,5 @@
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
   },
+  "include": ["./app/src/index.d.ts"]
 }
