@@ -8,6 +8,10 @@ import { theme } from "../settings/theme";
 import { RecommendedCards } from "../components/RecommendedCards";
 const peopleJSON = require("../data/people.json");
 
+const wrapperStyle = css({
+  padding: "20px",
+});
+
 export const App: React.FC<{}> = () => {
   const [people, setPeople] = useState([]);
   useEffect(() => {
@@ -22,7 +26,9 @@ export const App: React.FC<{}> = () => {
         `}
       />
       <ThemeProvider theme={theme}>
-        <RecommendedCards people={people} />
+        <div css={wrapperStyle}>
+          <RecommendedCards people={people} />
+        </div>
       </ThemeProvider>
     </React.Fragment>
   );

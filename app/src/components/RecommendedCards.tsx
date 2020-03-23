@@ -12,10 +12,12 @@ interface RecommendedCardsProps {
 }
 
 const RecommendedCardsStyle = css({
-  height: 620,
-  padding: "0 16px",
+  height: 530,
   margin: "0 auto",
   boxSizing: "border-box",
+  position: "relative",
+  justifyContent: "center",
+  display: "flex",
 });
 
 const displayCardLimit = 5;
@@ -27,7 +29,7 @@ export const RecommendedCards: React.FC<RecommendedCardsProps> = ({
   const [isLiked, setIsLiked] = useState(false);
   const [displayPeople, setDisplayPeople] = useState([]);
   const transitions = useTransition(displayPeople, person => person.id, {
-    from: { position: "absolute", maxWidth: 400, width: "100%", opacity: 1 },
+    from: { position: "absolute", maxWidth: 360, width: "100%", opacity: 1 },
     enter: { opacity: 1, transform: "translateX(0%) rotate(0deg)" },
     leave: {
       opacity: 0,

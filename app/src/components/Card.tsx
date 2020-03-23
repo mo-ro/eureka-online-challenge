@@ -9,12 +9,11 @@ type CardProps = RecommendedPersonTypes;
 const cardStyle = theme =>
   css({
     backgroundColor: theme.colors.white,
-    height: 600,
+    height: 500,
     borderRadius: 10,
     boxSizing: "border-box",
     display: "flex",
-    maxWidth: 400,
-    position: "absolute",
+    maxWidth: 360,
     width: "100%",
     boxShadow: "0px 4px 16px rgba(0, 0, 0, .08)",
     backgroundSize: "cover",
@@ -47,13 +46,18 @@ const cardStyle = theme =>
     "& .upper": {
       display: "flex",
       alignItems: "center",
-      marginBottom: 8,
+      marginBottom: 16,
     },
 
     "& .name": {
       // fontWeight: "bold",
-      fontSize: 16,
+      fontSize: 18,
       marginRight: 8,
+    },
+
+    "& .rate": {
+      color: theme.colors.pink,
+      fontsize: 16,
     },
 
     "& .age": {
@@ -65,6 +69,14 @@ const cardStyle = theme =>
     "& .tags": {
       display: "flex",
       flexWrap: "wrap",
+    },
+
+    "& .tag": {
+      color: theme.colors.emerald,
+      padding: "4px 12px",
+      borderRadius: 50,
+      border: `1px solid ${theme.colors.emerald}`,
+      fontSize: 16,
     },
   });
 
