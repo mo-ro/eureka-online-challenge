@@ -23,6 +23,7 @@ export const App: React.FC<{}> = () => {
       <Global
         styles={css`
           ${emotionReset}
+          font-family: sans-serif
         `}
       />
       <ThemeProvider theme={theme}>
